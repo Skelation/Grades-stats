@@ -1,0 +1,36 @@
+import os
+import json
+from datetime import datetime
+
+# Set the working directory to the script's directory
+script_directory = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_directory)
+
+# Get user input (To change to a custom tkinter GUI)
+grade = input("What's your grade? ")
+
+# Generate a timestamp to use as a unique identifier
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# Define the new data entry with a timestamp as the key
+json_input = {
+    timestamp: {
+        "Grade": grade
+    }
+}
+
+# Check if the JSON file exists
+if os.path.exists("data.json"):
+    # If the file exists, load the existing data
+    with open("data.json", "r") as file:
+        data = json.load(file)
+else:
+    # If the file doesn't exist, initialize an empty dictionary
+    data = {}
+
+# Add the new data entry to the dictionary
+data.update(json_input)
+
+# Write the updated data dictionary to the JSON file
+with open("data.json", "w") as file:
+    json.dump(data, file, indent=1)
