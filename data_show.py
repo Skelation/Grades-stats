@@ -5,6 +5,7 @@ import matplotlib
 import customtkinter as ctk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
+from mpldatacursor import datacursor
 
 def on_closing():
     # This function will be called when the window is closed
@@ -21,13 +22,15 @@ with open("data.json", "r") as file:
 
 # Extract grades from the data
 grades = [int(entry.get("Grade", 0)) for entry in data_from_file.values() if entry.get("Grade")]
+names = [entry.get("Name", "") for entry in data_from_file.values() if entry.get("Name")]
 
 # Set the Matplotlib backend to "TkAgg"
 matplotlib.use("TkAgg")
 
 # Create a tkinter window
 window = tkinter.Tk()
-window.geometry("600x400")
+window.minsize(800, 800)
+window.geometry("+580+100")
 window.title("Grades")
 window.config(bg="#E7EFFA")
 
@@ -37,13 +40,14 @@ title_frame.pack()
 title_label = ctk.CTkLabel(title_frame, text="Grades", bg_color="#E7EFFA", font=("Poppins", 20))
 title_label.pack(side="left")
 
-grade_frame = ctk.CTkFrame(window)
+grade_frame = ctk.CTkFrame(window, bg_color="#E7EFFA")
 grade_frame.pack()
 
 for key, entry in data_from_file.items():
     grade = entry.get("Grade")
+    name = entry.get("Name")
     if grade:
-        grade_label = ctk.CTkLabel(grade_frame, text=f"Grade {key}: {grade}", bg_color="#E7EFFA")
+        grade_label = ctk.CTkLabel(grade_frame, text=f"{name}: {grade}%", bg_color="#E7EFFA")
         grade_label.pack()
 
 # Create the frame for the graph
@@ -51,12 +55,16 @@ graph_frame = tkinter.Frame(window, bg="white")
 graph_frame.pack()
 
 # Create a line graph of the grades using Matplotlib
-plt.figure(figsize=(6, 4))
-plt.plot(range(1, len(grades) + 1), grades, marker='o', linestyle='-')
-plt.xlabel("Grades")
-plt.ylabel("Grade Value")
-plt.title("Grades Overview")
-plt.grid(True)
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.plot(range(1, len(grades) + 1), grades, marker='o', linestyle='-')
+ax.set_xlabel("Grades")
+ax.set_ylabel("Grade Value")
+ax.set_title("Grades Overview")
+ax.grid(True)
+
+# Annotate data points with names
+for i, name in enumerate(names):
+    ax.annotate(name, (i + 1, grades[i]), xytext=(1,5), textcoords='offset points')
 
 # Embed the Matplotlib figure in the tkinter window
 canvas = FigureCanvasTkAgg(plt.gcf(), master=graph_frame)
