@@ -10,7 +10,7 @@ os.chdir(script_directory)
 grade = input("What's your grade? ")
 
 # Generate a timestamp to use as a unique identifier
-timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
 # Define the new data entry with a timestamp as the key
 json_input = {
