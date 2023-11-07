@@ -13,13 +13,6 @@ name = input("Name ? ")
 # Generate a timestamp to use as a unique identifier
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-# Define the new data entry with a timestamp as the key
-json_input = {
-    timestamp: {
-        "Grade": grade
-    }
-}
-
 # Check if the JSON file exists
 if os.path.exists("data.json"):
     # If the file exists, load the existing data
