@@ -9,4 +9,5 @@ os.chdir(script_directory)
 with open("data.json", "r") as file:
     data_from_file = json.load(file)
 
-grade = data_from_file["grade"]
+grade = data_from_file["Grade"]
+print(grade)
