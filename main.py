@@ -49,3 +49,4 @@ data.update(json_input)
 # Write the updated data dictionary to the JSON file
 with open("data.json", "w") as file:
     json.dump(data, file, indent=1)
+    
