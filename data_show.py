@@ -29,30 +29,33 @@ matplotlib.use("TkAgg")
 
 # Create a tkinter window
 window = tkinter.Tk()
-window.minsize(800, 800)
+window.minsize(400, 400)
 window.geometry("+580+100")
 window.title("Grades")
 window.config(bg="#E7EFFA")
 
-# Create the title frame
-title_frame = ctk.CTkFrame(window, bg_color="#E7EFFA")
-title_frame.pack()
-title_label = ctk.CTkLabel(title_frame, text="Grades", bg_color="#E7EFFA", font=("Poppins", 20))
-title_label.pack(side="left")
+# Create the title frame using the grid manager
+title_label = tkinter.Label(window, text="Grades", bg="#E7EFFA", font=("Poppins", 20))
+title_label.grid(row=0, column=0, sticky="w", padx=10, pady= 10)
 
-grade_frame = ctk.CTkFrame(window, bg_color="#E7EFFA")
-grade_frame.pack()
+# Create the Grades Frame
+grade_frame = ctk.CTkScrollableFrame(window, bg_color="#E7EFFA", orientation= "vertical")
+grade_frame.grid(row=1, column=0, padx=10, sticky="nsew")
 
 for key, entry in data_from_file.items():
     grade = entry.get("Grade")
     name = entry.get("Name")
     if grade:
-        grade_label = ctk.CTkLabel(grade_frame, text=f"{name}: {grade}%", bg_color="#E7EFFA")
-        grade_label.pack()
+        grade_label = tkinter.Label(grade_frame, text=f"{name}: {grade}%", bg="#DBDBDB")
+        grade_label.pack(anchor="w", padx=5, pady=5)
 
-# Create the frame for the graph
-graph_frame = tkinter.Frame(window, bg="white")
-graph_frame.pack()
+# Create the Graph frame
+graph_frame = tkinter.Frame(window, bg="#E7EFFA")
+graph_frame.grid(row=1, column=1, padx=10, sticky="nsew")
+
+# Set row and column weights to control resizing
+window.grid_rowconfigure(1, weight=1)
+window.grid_columnconfigure(0, weight=1)
 
 # Create a line graph of the grades using Matplotlib
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -64,7 +67,7 @@ ax.grid(True)
 
 # Annotate data points with names
 for i, name in enumerate(names):
-    ax.annotate(name, (i + 1, grades[i]), xytext=(1,5), textcoords='offset points')
+    ax.annotate(name, (i + 1, grades[i]), xytext=(1, 5), textcoords='offset points')
 
 # Embed the Matplotlib figure in the tkinter window
 canvas = FigureCanvasTkAgg(plt.gcf(), master=graph_frame)
