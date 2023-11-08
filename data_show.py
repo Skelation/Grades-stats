@@ -5,8 +5,6 @@ import matplotlib
 import customtkinter as ctk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch
-from mpldatacursor import datacursor
 
 def on_closing():
     # This function will be called when the window is closed
