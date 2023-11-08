@@ -5,6 +5,7 @@ import matplotlib
 import customtkinter as ctk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
 from mpldatacursor import datacursor
 
 def on_closing():
@@ -32,25 +33,25 @@ window = tkinter.Tk()
 window.minsize(400, 400)
 window.geometry("+580+100")
 window.title("Grades")
-window.config(bg="#E7EFFA")
+window.config(bg="#242324")
 
 # Create the title frame using the grid manager
-title_label = tkinter.Label(window, text="Grades", bg="#E7EFFA", font=("Poppins", 20))
+title_label = tkinter.Label(window, text="Grades", bg="#242324", fg="white", font=("Poppins", 20))
 title_label.grid(row=0, column=0, sticky="w", padx=10, pady= 10)
 
 # Create the Grades Frame
-grade_frame = ctk.CTkScrollableFrame(window, bg_color="#E7EFFA", orientation= "vertical")
-grade_frame.grid(row=1, column=0, padx=10, sticky="nsew")
+grade_frame = ctk.CTkScrollableFrame(window, fg_color="#2b2b2b", orientation= "vertical", scrollbar_button_color="#696968")
+grade_frame.grid(row=1, column=0, padx=10, sticky="nsew", pady=10)
 
 for key, entry in data_from_file.items():
     grade = entry.get("Grade")
     name = entry.get("Name")
     if grade:
-        grade_label = tkinter.Label(grade_frame, text=f"{name}: {grade}%", bg="#DBDBDB")
+        grade_label = tkinter.Label(grade_frame, text=f"{name}: {grade}%", bg="#2b2b2b", fg="white", font=("Poppins", 12))
         grade_label.pack(anchor="w", padx=5, pady=5)
 
 # Create the Graph frame
-graph_frame = tkinter.Frame(window, bg="#E7EFFA")
+graph_frame = tkinter.Frame(window, bg="#2b2b2b")
 graph_frame.grid(row=1, column=1, padx=10, sticky="nsew")
 
 # Set row and column weights to control resizing
@@ -71,7 +72,7 @@ for i, name in enumerate(names):
 
 # Embed the Matplotlib figure in the tkinter window
 canvas = FigureCanvasTkAgg(plt.gcf(), master=graph_frame)
-canvas.get_tk_widget().pack()
+canvas.get_tk_widget().pack(pady=10)
 
 # Bind the closing function to the window's close button
 window.protocol("WM_DELETE_WINDOW", on_closing)
