@@ -28,6 +28,7 @@ matplotlib.use("TkAgg")
 
 # Create a tkinter window
 window = tkinter.Tk()
+window.iconbitmap("./assets/sheet.ico")
 window.minsize(830, 500)
 window.geometry("+580+100")
 window.title("Grades")
