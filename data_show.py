@@ -48,9 +48,16 @@ for key, entry in data_from_file.items():
         grade_label = tkinter.Label(grade_frame, text=f"{name}: {grade}%", bg="#2b2b2b", fg="white", font=("Poppins", 12))
         grade_label.pack(anchor="w", padx=5, pady=5)
 
+tabView = ctk.CTkTabview(window, fg_color="#2b2b2b", segmented_button_fg_color = "#2596be", segmented_button_selected_color="#2b2b2b", segmented_button_unselected_color="#2596be")
+tabView.grid(row = 1, column = 1, pady= 10, padx=10)
+tabView.add("LinearGraph")
+tabView.add("BarGraph")
+
+tabView.set("LinearGraph")
+
 # Create the Graph frame
-graph_frame = tkinter.Frame(window, bg="#2b2b2b")
-graph_frame.grid(row=1, column=1, padx=10, sticky="nsew", pady= 10)
+Linear_graph_frame = tkinter.Frame(tabView.tab("LinearGraph"), bg="#2b2b2b")
+Linear_graph_frame.grid(row=1, column=1, padx=10, sticky="nsew", pady= 10)
 
 # Set row and column weights to control resizing
 window.grid_rowconfigure(1, weight=1)
@@ -87,8 +94,28 @@ for i, name in enumerate(names):
     ax.annotate(name, (i + 1, grades[i]), xytext=(1, 5), textcoords='offset points', color="limegreen")
 
 # Embed the Matplotlib figure in the tkinter window
-canvas = FigureCanvasTkAgg(plt.gcf(), master=graph_frame)
+canvas = FigureCanvasTkAgg(plt.gcf(), master=Linear_graph_frame)
 canvas.get_tk_widget().pack()
+
+bargraph = tkinter.Frame(tabView.tab("BarGraph"), bg="#2b2b2b")
+bargraph.grid(row=1, column=1, padx=10, sticky="nsew", pady= 10)
+
+fig_bar, ax_bar = plt.subplots(figsize=(6, 4))
+fig_bar.set_facecolor("#2b2b2b")
+ax_bar.set_facecolor("#2b2b2b")
+
+# Generate the bar graph
+ax_bar.bar(names, grades, color='limegreen')
+ax_bar.set_xlabel("Names", color="white")
+ax_bar.set_ylabel("Grades(%)", color="white")
+ax_bar.set_title("Grades", color="white")
+ax_bar.tick_params(axis='x', labelcolor='white', rotation=20)
+ax_bar.tick_params(axis='y', labelcolor='white')
+ax_bar.grid(color='white')
+
+# Embed the Matplotlib figure in the tkinter window for the bar graph
+canvas_bar = FigureCanvasTkAgg(fig_bar, master=bargraph)
+canvas_bar.get_tk_widget().pack()
 
 # Bind the closing function to the window's close button
 window.protocol("WM_DELETE_WINDOW", on_closing)
