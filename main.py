@@ -8,7 +8,7 @@ os.chdir(script_directory)
 
 # Get user input (To change to a custom tkinter GUI)
 grade = input("What's your grade? ")
-name = input("Name ? ")
+name = input("What's your name ? ")
 
 # Generate a timestamp to use as a unique identifier
 timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
