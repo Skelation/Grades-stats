@@ -28,7 +28,7 @@ matplotlib.use("TkAgg")
 
 # Create a tkinter window
 window = tkinter.Tk()
-window.minsize(400, 400)
+window.minsize(830, 500)
 window.geometry("+580+100")
 window.title("Grades")
 window.config(bg="#242324")
