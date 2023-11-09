@@ -9,8 +9,8 @@
 
 ---
 ## User Input
-
+**In Dev**
 ---
 
 ## Graph
-<img src="https://i.imgur.com/RYx2YzD.png" alt="Alt text" title="Optional title">
+<img src="https://i.imgur.com/RYx2YzD.png" alt="Graph interface">
