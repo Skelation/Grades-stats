@@ -8,9 +8,8 @@
 **This project was made by 2 students and is solely intended for personal learning and research**
 
 ---
-## User Input
-In dev
----
+# User Input
+**IN DEV**
 
 ## Graph
 <img src="https://i.imgur.com/RYx2YzD.png" alt="Graph interface">
