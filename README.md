@@ -13,3 +13,7 @@
 
 ## Graph
 <img src="https://i.imgur.com/RYx2YzD.png" alt="Graph interface">
+
+---
+## Installation
+```git clone github.com/Heribio/Grades-stats```
