@@ -42,7 +42,7 @@ def submit_values():
 
 window = tk.Tk()
 window.title("Grade Grapher")
-window.geometry("830x500")
+window.geometry("600x270")
 window.iconbitmap("./assets/sheet.ico")
 
 validation = (window.register(validate_input), '%P', '%d')
@@ -52,7 +52,7 @@ left_title_label = ttk.Label(
     text='Grade Grapher',
     font='poppins 25 ')
 left_title_label.configure(foreground='white', background='#242324')
-left_title_label.grid(row=0, column=0, padx=10, pady=10, sticky='w')
+left_title_label.grid(row=0, column=0, padx=20, pady=10, sticky='w')
 
 coffee_label = ttk.Label(
     master=window,
@@ -60,7 +60,7 @@ coffee_label = ttk.Label(
     font=('poppins, 8')
 )
 coffee_label.configure(foreground='white', background='#242324')
-coffee_label.grid(row=0, column=1, padx=10, pady=10, sticky='ne')
+coffee_label.grid(row=0, column=1, padx=20, pady=10)
 
 name_label = ttk.Label(
     master=window,
@@ -68,10 +68,10 @@ name_label = ttk.Label(
     font='poppins 15'
 )
 name_label.configure(foreground='white', background='#242324')
-name_label.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+name_label.grid(row=1, column=0, padx=20, pady=10, sticky='w')
 
 name_entry = tk.Entry(window, width=30, justify="left")
-name_entry.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+name_entry.grid(row=2, column=0, padx=20, pady=10, sticky='w')
 
 submission_label_name = tk.Label(window, text="")
 submission_label_name.grid(row=3, column=0, padx=10, pady=10, sticky='w')
@@ -85,8 +85,10 @@ grade_label = ttk.Label(
 grade_label.configure(foreground='white', background='#242324')
 grade_label.grid(row=1, column=1, padx=10, pady=10, sticky='w')
 
-grade_entry = tk.Entry(window, width=30, justify="right",
-                       validate="key", validatecommand=validation)
+grade_entry = tk.Entry(window, 
+                       width=30,
+                       validate="key", 
+                       validatecommand=validation)
 grade_entry.grid(row=2, column=1, padx=10, pady=10, sticky='w')
 
 submission_label_grade = tk.Label(window, text="")
