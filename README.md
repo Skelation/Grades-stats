@@ -9,7 +9,7 @@
 
 ---
 # User Input
-**IN DEV**
+<img src="https://i.imgur.com/3rk2zeF.png" alt="Graph interface">
 
 ## Graph
 <img src="https://i.imgur.com/RYx2YzD.png" alt="Graph interface">
@@ -17,3 +17,7 @@
 ---
 ## Installation
 ```git clone github.com/Heribio/Grades-stats```
+
+## Usage
+```python main.py```
+```python data_show.py```
