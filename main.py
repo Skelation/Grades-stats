@@ -4,6 +4,7 @@ from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import webbrowser
 
 def validate_input(value, action_type):
     if action_type == '1':  # Insert
@@ -44,6 +45,8 @@ window = tk.Tk()
 window.title("Grade Grapher")
 window.geometry("600x270")
 window.iconbitmap("./assets/sheet.ico")
+window.minsize(600, 270)
+window.maxsize(600, 270)
 
 validation = (window.register(validate_input), '%P', '%d')
 
