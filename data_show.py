@@ -33,13 +33,18 @@ window.minsize(830, 500)
 window.geometry("+580+100")
 window.title("Grades")
 window.config(bg="#242324")
-
-# Create the title frame using the grid manager
-title_label = tkinter.Label(window, text="Grades", bg="#242324", fg="white", font=("Poppins", 20))
-title_label.grid(row=0, column=0, sticky="w", padx=20, pady= 10)
+window.attributes('-alpha', 0.95)
+window.maxsize(830, 500)
 
 # Create the Grades Frame
-grade_frame = ctk.CTkScrollableFrame(window, fg_color="#2b2b2b", orientation= "vertical", scrollbar_button_color="#696968")
+grade_frame = ctk.CTkScrollableFrame(window, fg_color="#2b2b2b", 
+                                     orientation= "vertical", 
+                                     scrollbar_button_color="#696968", 
+                                     label_text="Grades", 
+                                     label_font= ('Poppins bold', 20), 
+                                     label_anchor="w", 
+                                     label_text_color="white", 
+                                     label_fg_color="#2b2b2b")
 grade_frame.grid(row=1, column=0, padx=10, sticky="nsew", pady=10)
 
 for key, entry in data_from_file.items():
@@ -49,15 +54,8 @@ for key, entry in data_from_file.items():
         grade_label = tkinter.Label(grade_frame, text=f"{name}: {grade}%", bg="#2b2b2b", fg="white", font=("Poppins", 12))
         grade_label.pack(anchor="w", padx=5, pady=5)
 
-tabView = ctk.CTkTabview(window, fg_color="#2b2b2b", segmented_button_fg_color = "#2596be", segmented_button_selected_color="#2b2b2b", segmented_button_unselected_color="#2596be")
-tabView.grid(row = 1, column = 1, pady= 10, padx=10)
-tabView.add("LinearGraph")
-tabView.add("BarGraph")
-
-tabView.set("LinearGraph")
-
 # Create the Graph frame
-Linear_graph_frame = tkinter.Frame(tabView.tab("LinearGraph"), bg="#2b2b2b")
+Linear_graph_frame = tkinter.Frame(window, bg="#2b2b2b")
 Linear_graph_frame.grid(row=1, column=1, padx=10, sticky="nsew", pady= 10)
 
 # Set row and column weights to control resizing
@@ -96,27 +94,7 @@ for i, name in enumerate(names):
 
 # Embed the Matplotlib figure in the tkinter window
 canvas = FigureCanvasTkAgg(plt.gcf(), master=Linear_graph_frame)
-canvas.get_tk_widget().pack()
-
-bargraph = tkinter.Frame(tabView.tab("BarGraph"), bg="#2b2b2b")
-bargraph.grid(row=1, column=1, padx=10, sticky="nsew", pady= 10)
-
-fig_bar, ax_bar = plt.subplots(figsize=(6, 4))
-fig_bar.set_facecolor("#2b2b2b")
-ax_bar.set_facecolor("#2b2b2b")
-
-# Generate the bar graph
-ax_bar.bar(names, grades, color='limegreen')
-ax_bar.set_xlabel("Names", color="white")
-ax_bar.set_ylabel("Grades(%)", color="white")
-ax_bar.set_title("Grades by type", color="white")
-ax_bar.tick_params(axis='x', labelcolor='white', rotation=10)
-ax_bar.tick_params(axis='y', labelcolor='white')
-ax_bar.grid(color='white')
-
-# Embed the Matplotlib figure in the tkinter window for the bar graph
-canvas_bar = FigureCanvasTkAgg(fig_bar, master=bargraph)
-canvas_bar.get_tk_widget().pack()
+canvas.get_tk_widget().pack(fill="both", expand=True)
 
 # Bind the closing function to the window's close button
 window.protocol("WM_DELETE_WINDOW", on_closing)
