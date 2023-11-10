@@ -6,10 +6,6 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 import webbrowser
 
-def validate_input(value, action_type):
-    if action_type == '1':  # Insert
-        return value.isdigit()
-    return True
 
 def submit_values():
     name = name_entry.get()
@@ -19,11 +15,15 @@ def submit_values():
     os.chdir(script_directory)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
+    data = {}  # Initialize data as an empty dictionary
+
     if os.path.exists("data.json"):
-        with open("data.json", "r") as file:
-            data = json.load(file)
-    else:
-        data = {}
+        try:
+            with open("data.json", "r") as file:
+                data = json.load(file)
+        except json.decoder.JSONDecodeError:
+            # Handle the case where the file is empty or not valid JSON
+            pass
 
     next_key = str(len(data) + 1)
 
@@ -41,14 +41,13 @@ def submit_values():
         json.dump(data, file, indent=1)
     window.destroy()
 
+
 window = tk.Tk()
 window.title("Grade Grapher")
 window.geometry("600x270")
 window.iconbitmap("./assets/sheet.ico")
 window.minsize(600, 270)
 window.maxsize(600, 270)
-
-validation = (window.register(validate_input), '%P', '%d')
 
 left_title_label = ttk.Label(
     master=window,
@@ -89,9 +88,7 @@ grade_label.configure(foreground='white', background='#242324')
 grade_label.grid(row=1, column=1, padx=10, pady=10, sticky='w')
 
 grade_entry = tk.Entry(window, 
-                       width=30,
-                       validate="key", 
-                       validatecommand=validation)
+                       width=30)
 grade_entry.grid(row=2, column=1, padx=10, pady=10, sticky='w')
 
 submission_label_grade = tk.Label(window, text="")
