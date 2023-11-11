@@ -20,4 +20,5 @@
 
 ## Usage
 ```python main.py```
+After running main.py, your information is stored. Then you can run data_show.py to view the information you inputed into a graph! 
 ```python data_show.py```
