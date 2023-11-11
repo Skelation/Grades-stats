@@ -9,7 +9,7 @@
 
 ---
 # User Input
-<img src="https://i.imgur.com/3rk2zeF.png" alt="Graph interface">
+<img src="https://i.imgur.com/JbZIXs2.png" alt="Graph interface">
 
 ## Graph
 <img src="https://i.imgur.com/RYx2YzD.png" alt="Graph interface">
