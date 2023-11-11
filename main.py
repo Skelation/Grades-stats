@@ -31,7 +31,6 @@ class ToplevelWindow(tk.Toplevel):
         window.geometry("+580+100")
         window.title("Grades")
         window.config(bg="#242324")
-        window.attributes('-alpha', 0.95)
         window.maxsize(830, 500)
 
         # Create the Grades Frame
