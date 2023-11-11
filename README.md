@@ -24,4 +24,4 @@ After running main.py, your information is stored. Then you can run data_show.py
 ```python data_show.py```
 
 ## Delete Grades
-If you want to delete the saved grade and name data, you can do it manually by going to the Json file and deleting the data that you wish not to be showed on the graph.
+If you want to delete a grade, you can do it manually by going to the ```data.json``` file and deleting the data that you wish not to be showed on the graph.
