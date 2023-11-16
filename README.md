@@ -20,8 +20,7 @@
 
 ## Usage
 ```python main.py```
-After running main.py, your information is stored. Then you can run data_show.py to view the information you inputed into a graph! 
-```python data_show.py```
+After running main.py, input your informations and click confirm. Open the graph at any by pressing the corresponding button.
 
 ## Delete Grades
 If you want to delete a grade, you can do it manually by going to the ```data.json``` file and deleting the data that you wish not to be showed on the graph.
